@@ -1,0 +1,21 @@
+{
+	"name": "rbnvrw/PHPShuntingMathParser",
+	"description": "A simple shunting-yard based math parser and executor for PHP",
+	"version": "0.0.1",
+	"keywords": ["math", "eval"],
+	"homepage": "https://github.com/rbnvrw/PHPShuntingMathParser",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Ruben Verweij",
+			"email": "development@rubenverweij.nl",
+			"homepage": "http://rubenverweij.nl"
+		}
+	],
+	"autoload": {
+		"psr-0": {"PHPShuntingMathParser\\": "lib/"}
+	},
+	"require-dev": {
+        "phpunit/phpunit": "4.7.*"
+    }
+}
