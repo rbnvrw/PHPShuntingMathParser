@@ -36,6 +36,13 @@ namespace PHPShuntingMathParser {
         /**
          * @return bool
          */
+        public function hasItems(){
+            return count($this->_items) > 0;
+        }
+
+        /**
+         * @return bool
+         */
         protected function isLastTokenNumeric(){
             /** @var Token $last_token */
             $last_token = end($this->_items);
