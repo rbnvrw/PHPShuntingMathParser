@@ -46,8 +46,9 @@ namespace PHPShuntingMathParser {
          * @param Token $token
          * @return $this
          */
-        public function append(Token $token){
-            $this->setRawInput($this->getRawInput().$token->getRawInput());
+        public function append(Token $token)
+        {
+            $this->setRawInput($this->getRawInput() . $token->getRawInput());
             return $this;
         }
 

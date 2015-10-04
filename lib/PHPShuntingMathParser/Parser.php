@@ -6,7 +6,8 @@ namespace PHPShuntingMathParser {
      * Class Parser
      * @package PHPShuntingMathParser
      */
-    class Parser {
+    class Parser
+    {
         /**
          * @var Queue
          */
@@ -19,7 +20,8 @@ namespace PHPShuntingMathParser {
         /**
          * Parser constructor.
          */
-        public function __construct(){
+        public function __construct()
+        {
             $this->_output_queue = new Queue();
             $this->_operator_stack = new Stack();
         }
@@ -27,18 +29,19 @@ namespace PHPShuntingMathParser {
         /**
          * @param $expression
          */
-        public function parse($expression){
+        public function parse($expression)
+        {
             $oQueue = Tokenizer::tokenizeExpression($expression);
 
-            while($oQueue->hasItems()){
+            while ($oQueue->hasItems()) {
                 $oCurrentToken = $oQueue->shift();
 
-                if($oCurrentToken->isNumeric()){
+                if ($oCurrentToken->isNumeric()) {
                     $this->_output_queue->enqueue($oCurrentToken);
                     continue;
                 }
 
-                if($oCurrentToken instanceof Operator){
+                if ($oCurrentToken instanceof Operator) {
 
                 }
             }
