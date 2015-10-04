@@ -21,27 +21,33 @@ namespace PHPShuntingMathParser {
         /**
          * @return bool
          */
-        public function isNumeric()
+        public function isNumericOrDecimalPoint()
         {
-            return self::isTokenNumeric($this->_raw_input);
+            return ($this->isNumeric() || $this->isDecimalPoint());
         }
 
         /**
-         * @param $input
          * @return bool
          */
-        public static function isTokenNumeric($input)
+        public function isNumeric()
         {
-            return is_numeric($input);
+            return is_numeric($this->_raw_input);
+        }
+
+        /**
+         * @return bool
+         */
+        public function isDecimalPoint()
+        {
+            return ($this->_raw_input == '.');
         }
 
         /**
          * @param Token $token
          * @return $this
          */
-        public function append(Token $token)
-        {
-            $this->setRawInput($this->getRawInput() . $token->getRawInput());
+        public function append(Token $token){
+            $this->setRawInput($this->getRawInput().$token->getRawInput());
             return $this;
         }
 
