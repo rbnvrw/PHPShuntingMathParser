@@ -16,12 +16,6 @@ namespace PHPShuntingMathParser {
          * @return Token
          */
         public function enqueue(Token $token){
-            if($token->isNumeric()){
-                if($this->isLastTokenNumeric()){
-                    return $this->appendToLastToken($token);
-                }
-            }
-
             $this->_items[] = $token;
             return $token;
         }
@@ -43,7 +37,10 @@ namespace PHPShuntingMathParser {
         /**
          * @return bool
          */
-        protected function isLastTokenNumeric(){
+        public function isLastTokenNumeric(){
+            if(!$this->hasItems()){
+                return false;
+            }
             /** @var Token $last_token */
             $last_token = end($this->_items);
             return $last_token->isNumeric();
@@ -53,7 +50,10 @@ namespace PHPShuntingMathParser {
          * @param Token $token
          * @return Token
          */
-        protected function appendToLastToken(Token $token){
+        public function appendToLastToken(Token $token){
+            if(!$this->hasItems()){
+                return false;
+            }
             /** @var Token $last_token */
             $last_token = end($this->_items);
             $last_token->append($token);

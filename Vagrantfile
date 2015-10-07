@@ -1,21 +1,13 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "hashicorp/precise32"
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provision :shell, path: "vagrant/vagrant.sh"
+  config.vm.provision "shell", path: "vagrant/bootstrap.sh", privileged: false
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
-
-  # Provisioning
-  config.vm.provision :shell, path: "vagrant/bootstrap.sh"
-  config.vm.provision :shell, path: "vagrant/startup.sh", run: "always"
-
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "512"
+  end
+  config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=766"]
+  config.vm.provision "shell", path: "vagrant/vagrant_start.sh", run: "always"
+  config.vm.provision "shell", path: "vagrant/vagrant_user.sh", privileged: false, run: "always"
 end

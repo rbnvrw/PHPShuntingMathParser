@@ -51,8 +51,15 @@ namespace PHPShuntingMathParser {
             $oQueue = new Queue();
 
             foreach($aParts as $sPart){
-                if(Token::isTokenNumeric($sPart)) {
+                if(Token::isTokenNumericOrDecimalPoint($sPart)) {
+                    if($oQueue->hasItems()){
+                        if($oQueue->isLastTokenNumeric()){
+                            $oQueue->appendToLastToken(new Token($sPart));
+                        }
+                    }
                     $oQueue->enqueue(new Token($sPart));
+                }elseif(Token::isTokenParenthesis($sPart)){
+                    $oQueue->enqueue(new Parenthesis($sPart));
                 }else{
                     $oQueue->enqueue(new Operator($sPart));
                 }

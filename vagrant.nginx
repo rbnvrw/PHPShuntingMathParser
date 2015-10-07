@@ -1,0 +1,46 @@
+server {
+  server_name localhost;
+
+  client_max_body_size 32M;
+  sendfile off;
+
+  root /var/www/;
+  access_log /var/www/logs/access.log;
+  error_log /var/www/logs/error.log;
+  index index.html index.php;
+  location / {
+    add_header 'Access-Control-Allow-Origin' "$http_origin";
+    allow all;
+#    deny all;
+    try_files $uri $uri/ @rewrites;
+  }
+
+  location @rewrites {
+    rewrite ^/([^/.]+)/?$ /index.php?q=$1 last;
+    rewrite ^/([^/.]+)/([^/.]+)/?$ /index.php?q=$1/$2 last;
+    rewrite ^/([^/.]+)/([^/.]+)/([^/.]+)/?$ /index.php?q=$1/$2/$3 last;
+    rewrite ^/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/?$ /index.php?q=$1/$2/$3/$4 last;
+    rewrite ^/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/?$ /index.php?q=$1/$2/$3/$4/$5 last;
+    rewrite ^/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/([^/.]+)/?$ /index.php?q=$1/$2/$3/$4/$5/$6 last;
+  }
+  location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+    access_log off;
+    expires max;
+  }
+  location ~ /\.ht {
+    deny  all;
+  }
+
+  location ~ \.php {
+    fastcgi_index index.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    include /etc/nginx/fastcgi_params;
+    #fastcgi_pass 127.0.0.1:9000;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    #fastcgi_pass unix:/dev/shm/php-fastcgi.socket;
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_read_timeout 300;
+    fastcgi_buffer_size 32K;
+    fastcgi_buffers 16 16k;
+  }
+}
