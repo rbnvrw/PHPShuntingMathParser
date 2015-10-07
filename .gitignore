@@ -1,5 +1,5 @@
 vendor
 .vagrant
-/test.php
-/logs
+test.php
+logs
 .idea
