@@ -28,6 +28,25 @@ namespace PHPShuntingMathParser {
         }
 
         /**
+         * @return array
+         */
+        public function getItems()
+        {
+            return $this->_items;
+        }
+
+        /**
+         * @param array $items
+         * @return Queue
+         */
+        public function setItems($items)
+        {
+            $this->_items = $items;
+
+            return $this;
+        }
+
+        /**
          * @return bool
          */
         public function hasItems(){

@@ -28,6 +28,15 @@ namespace PHPShuntingMathParser {
 
         /**
          * @param $expression
+         * @return \PHPShuntingMathParser\Queue
+         */
+        public static function parseExpression($expression){
+            $oParser = new Parser();
+            return $oParser->parse($expression);
+        }
+
+        /**
+         * @param $expression
          * @return Queue
          */
         public function parse($expression)
