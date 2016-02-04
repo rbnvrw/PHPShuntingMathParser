@@ -8,3 +8,8 @@ php:
   - nightly
 install:
   - composer install
+addons:
+  code_climate:
+    repo_token: 697f81fe3b9fa62e7315088b4daa5acab4c64549ed34f2e2dffbd0b59de63b54
+after_script:
+  - vendor/bin/test-reporter
