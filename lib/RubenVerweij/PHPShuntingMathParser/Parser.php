@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPShuntingMathParser {
+namespace RubenVerweij\PHPShuntingMathParser {
 
     /**
      * Class Parser
@@ -28,7 +28,7 @@ namespace PHPShuntingMathParser {
 
         /**
          * @param $expression
-         * @return \PHPShuntingMathParser\Queue
+         * @return Queue
          */
         public static function parseExpression($expression){
             $oParser = new Parser();

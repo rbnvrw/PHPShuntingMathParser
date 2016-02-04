@@ -6,7 +6,7 @@
  * Time: 21:27
  */
 
-namespace PHPShuntingMathParser;
+namespace RubenVerweij\PHPShuntingMathParser;
 
 
 class ParseTest extends \PHPUnit_Framework_TestCase

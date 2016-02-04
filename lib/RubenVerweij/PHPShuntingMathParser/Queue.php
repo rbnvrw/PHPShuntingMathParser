@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPShuntingMathParser {
+namespace RubenVerweij\PHPShuntingMathParser {
 
     /**
      * Class Queue
