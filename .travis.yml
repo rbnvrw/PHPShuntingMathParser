@@ -8,5 +8,3 @@ php:
   - nightly
 install:
   - composer install
-script:
-  - phpunit ./tests/
